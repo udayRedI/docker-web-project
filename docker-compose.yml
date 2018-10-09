@@ -1,0 +1,21 @@
+version: "3"
+services:
+
+  balancer:
+    image: uday0docker/pr-balancer:init
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - internal
+
+  frontend:
+    image: uday0docker/pr-frontend:init
+    volumes:
+      - ./frontend:/app
+    networks:
+      - internal
+
+networks:
+  internal:
