@@ -1,3 +1,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = git@bitbucket.org:uday-alone/frontend.git
+[submodule "balancer"]
+	path = balancer
+	url = git@bitbucket.org:uday-alone/balancer.git
