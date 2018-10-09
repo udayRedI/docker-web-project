@@ -1,0 +1,15 @@
+# Steps to setup project
+
+Step1: Go to https://docs.docker.com/install/linux/docker-ce/ubuntu/ and install docker for ubuntu.
+
+Step2: We now need to build the sub-projects.
+Run `docker build -t pr-<folder-name> .` in all folders.
+
+Step3: Now we need to create a tag for the images.
+Run `docker tag pr-<folder-name> uday0docker/pr-<folder-name>:init` in all folders.
+
+Step4: Be sure to shutdown local apache/ngnix servers leaving `80` port alone.
+
+Step5: Run `docker stack deploy -c docker-compose.yml` in root directory.
+
+To make sure its running properly run `docker service ls` and find the services online with running containers.
