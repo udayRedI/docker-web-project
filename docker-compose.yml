@@ -22,6 +22,18 @@ services:
     image: uday0docker/pr-backend:init
     volumes:
       - ./backend:/app
+    depends_on:
+      - db
+    networks:
+      - internal
+
+  db:
+    image: uday0docker/pr-db:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db/configdb:/data/configdb
+      - ./db/db:/data/db
     networks:
       - internal
 

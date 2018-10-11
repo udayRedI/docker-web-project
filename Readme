@@ -8,8 +8,20 @@ Run `docker build -t pr-<folder-name> .` in all folders.
 Step3: Now we need to create a tag for the images.
 Run `docker tag pr-<folder-name> uday0docker/pr-<folder-name>:init` in all folders.
 
-Step4: Be sure to shutdown local apache/ngnix servers leaving `80` port alone.
+Step4: Be sure to shutdown local apache/ngnix servers and mongo leaving `80` and `27017` port alone.
 
-Step5: Run `docker stack deploy -c docker-compose.yml` in root directory.
+Step5: Build mongo:
+    Next setting up DB was a bit triky. We need to build mongo from a remote repo.
+    Step1: Lets install `https://hub.docker.com/_/mongo/` for example. Run `docker pull mongo`.
+    Step2: Build that repo `docker build -t uday0docker/pr-db https://github.com/docker-library/mongo.git#:4.1`
+    Step3: Create `db/db` and `db/configdb` folders
+
+Step6: Create a swarm `docker swarm init`.
+
+Step7: Run `docker stack deploy -c docker-compose.yml pr` in root directory.
+
+***Do not forget to change `pr-` to your project/company name.
+***Whenever you make changes to docker-compose.yml be sure to change run `docker stack rm pr` `docker swarm leave --force` `docker swarm init` and then go to step7.
+
 
 To make sure its running properly run `docker service ls` and find the services online with running containers.
