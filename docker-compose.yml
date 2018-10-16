@@ -22,6 +22,8 @@ services:
     image: uday0docker/pr-backend:init
     volumes:
       - ./backend:/app
+    environment:
+      - PORT=4000
     depends_on:
       - db
     networks:
