@@ -24,6 +24,7 @@ services:
       - ./backend:/app
     environment:
       - PORT=4000
+      - DB_URI=mongodb://db/development
     depends_on:
       - db
     networks:
